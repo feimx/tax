@@ -40,7 +40,7 @@ class TaxManager
             $tax = new $className($retention);
         }
 
-        if (! in_array($tax, $this->taxes)) {
+        if (!in_array($tax, $this->taxes)) {
             $this->taxes[] = $tax;
         }
 
@@ -68,7 +68,7 @@ class TaxManager
      *
      * @return float Total amount
      */
-    public function get()
+    public function total()
     {
         $total = 0;
         foreach ($this->taxes as $tax) {
@@ -79,6 +79,28 @@ class TaxManager
     }
 
     /**
+     * Get a list of taxes with amount calculated.
+     *
+     * @return float Total amount
+     */
+    public function get()
+    {
+        $taxes = array_map(function ($tax) {
+            return [
+                'tax' => $tax->name,
+                'amount' => $tax->calculate($this->amount),
+            ];
+        }, $this->taxes);
+
+
+        return array_merge([
+            'amount' => $this->amount,
+            'total' => $this->total,
+            'taxes' => $taxes,
+        ]);
+    }
+
+    /**
      * @param string $tax
      *
      * @return string $className
@@ -86,10 +108,23 @@ class TaxManager
     public function stringToClassName($tax)
     {
         $className = 'FeiMx\\Tax\\Taxes\\'.strtoupper($tax);
-        if (! class_exists($className)) {
+        if (!class_exists($className)) {
             throw new TaxErrorException("The tax '{$tax}' is not valid");
         }
 
         return $className;
+    }
+
+    public function __get($property)
+    {
+        if ('total' == $property) {
+            return $this->total();
+        }
+
+        if (property_exists($this, $property)) {
+            return $this->{$property};
+        }
+
+        throw new \Exception('Property not exists');
     }
 }

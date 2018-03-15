@@ -13,8 +13,8 @@ class IEPS extends Tax implements TaxContract
      *
      * @return float Percetage
      */
-    public function calculate($amount): float
+    public function calculate($amount)
     {
-        return $amount * $this->percentage();
+        return number_format($amount * $this->percentage(), 6, '.', '');
     }
 }

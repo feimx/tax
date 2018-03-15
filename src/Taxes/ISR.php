@@ -13,9 +13,9 @@ class ISR extends Tax implements TaxContract
      *
      * @return float Percetage
      */
-    public function calculate($amount): float
+    public function calculate($amount)
     {
         // return -(($amount * 0.16) / 3) * 2;
-        return $amount * $this->percentage();
+        return number_format($amount * $this->percentage(), 6, '.', '');
     }
 }

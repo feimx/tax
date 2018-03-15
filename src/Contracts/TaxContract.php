@@ -11,5 +11,5 @@ interface TaxContract
      *
      * @return float Percetage
      */
-    public function calculate($amount): float;
+    public function calculate($amount);
 }
