@@ -40,7 +40,7 @@ class TaxManager
             $tax = new $className($retention);
         }
 
-        if (!in_array($tax, $this->taxes)) {
+        if (! in_array($tax, $this->taxes)) {
             $this->taxes[] = $tax;
         }
 
@@ -108,7 +108,7 @@ class TaxManager
     public function stringToClassName($tax)
     {
         $className = 'FeiMx\\Tax\\Taxes\\'.strtoupper($tax);
-        if (!class_exists($className)) {
+        if (! class_exists($className)) {
             throw new TaxErrorException("The tax '{$tax}' is not valid");
         }
 
