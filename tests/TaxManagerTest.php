@@ -169,7 +169,6 @@ class TaxManagerTest extends TestCase
 
     public function testCanCalculateMultipleTaxes()
     {
-        // 2300.90 + (2300.90*.16) + (2300.90*-0.106667)
         $taxManager = new TaxManager(100);
         $taxManager->addTax('iva');
         $taxManager->addTax('isr');
@@ -185,7 +184,6 @@ class TaxManagerTest extends TestCase
         $taxManager->addTax('isr');
         $this->assertEquals(2423.613900, $taxManager->get());
 
-        // 2300.90 + (2300.90*.16) + (2300.90*-0.106667) + (2300.90*0.08)
         $taxManager = new TaxManager(100);
         $taxManager->addTax('iva');
         $taxManager->addTax('isr');
