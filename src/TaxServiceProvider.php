@@ -2,8 +2,6 @@
 
 namespace FeiMx\Tax;
 
-use FeiMx\Tax\Contracts\Factory;
-use FeiMx\Tax\TaxManager;
 use Illuminate\Support\ServiceProvider;
 
 class TaxServiceProvider extends ServiceProvider
