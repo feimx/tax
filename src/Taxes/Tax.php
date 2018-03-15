@@ -69,4 +69,9 @@ class Tax
 
         throw new \Exception('Property not exists');
     }
+
+    public function __toString()
+    {
+        return $this->getTaxName();
+    }
 }
