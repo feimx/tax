@@ -91,6 +91,7 @@ class TaxManager
                 'amount' => $tax->calculate($this->amount),
             ];
         }, $this->taxes);
+        
         return array_merge([
             'amount' => $this->amount,
             'total' => $this->total,
