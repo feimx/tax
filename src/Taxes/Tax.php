@@ -60,4 +60,13 @@ class Tax
     {
         return $this->retention ? 'retention' : $type;
     }
+
+    public function __get($property)
+    {
+        if ('name' == $property) {
+            return $this->getTaxName();
+        }
+
+        throw new \Exception('Property not exists');
+    }
 }

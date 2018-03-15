@@ -9,12 +9,12 @@ class IVA extends Tax implements TaxContract
     /**
      * Calculate tax percentage of a given amount.
      *
-     * @param int $amount Amount for aclculate
+     * @param int $amount Amount for calculated
      *
      * @return float Percetage
      */
-    public function calculate($amount): float
+    public function calculate($amount)
     {
-        return $amount * $this->percentage();
+        return number_format($amount * $this->percentage(), 6, '.', '');
     }
 }
