@@ -31,7 +31,7 @@ class TaxTest extends TestCase
         $this->assertEquals(16.000000, $iva->calculate(100));
 
         $iva = new IVA($retention);
-        $this->assertEquals(-16.000000, $iva->calculate(100));
+        $this->assertEquals(-10.666700, $iva->calculate(100));
 
         $isr = new ISR();
         $this->assertEquals(-10.666700, $isr->calculate(100));
@@ -49,11 +49,11 @@ class TaxTest extends TestCase
 
         $iva = new IVA();
         $this->assertEquals(0.16, $iva->percentage());
-        $this->assertEquals(-0.16, $iva->percentage('retention'));
+        $this->assertEquals(-0.106667, $iva->percentage('retention'));
         $this->assertEquals(0.16, $iva->percentage('unexist'));
 
         $iva = new IVA($retention);
-        $this->assertEquals(-0.16, $iva->percentage());
+        $this->assertEquals(-0.106667, $iva->percentage());
 
         $isr = new ISR();
         $this->assertEquals(-0.106667, $isr->percentage());
