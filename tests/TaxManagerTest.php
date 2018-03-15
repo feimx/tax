@@ -109,15 +109,15 @@ class TaxManagerTest extends TestCase
 
         $taxManager = new TaxManager(100);
         $taxManager->addTax('iva', $retention);
-        $this->assertEquals(84.000000, $taxManager->total());
+        $this->assertEquals(89.333300, $taxManager->total());
 
         $taxManager = new TaxManager(5470);
         $taxManager->addTax('iva', $retention);
-        $this->assertEquals(4594.800000, $taxManager->total());
+        $this->assertEquals(4886.531510, $taxManager->total());
 
         $taxManager = new TaxManager(2300.90);
         $taxManager->addTax('iva', $retention);
-        $this->assertEquals(1932.756000, $taxManager->total());
+        $this->assertEquals(2055.469900, $taxManager->total());
     }
 
     public function testCanCalculateIEPS()
@@ -241,6 +241,6 @@ class TaxManagerTest extends TestCase
         $taxManager->addTax('isr');
         $taxManager->addTax('iva', $retention);
         $taxManager->addTax('ieps', $retention);
-        $this->assertEquals(81.333300, $taxManager->total());
+        $this->assertEquals(86.6666, $taxManager->total());
     }
 }
