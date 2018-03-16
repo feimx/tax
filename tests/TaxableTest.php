@@ -2,8 +2,8 @@
 
 namespace FeiMx\Tax\Tests;
 
-use FeiMx\Tax\Exceptions\TaxErrorException;
 use FeiMx\Tax\Models\TaxGroup;
+use FeiMx\Tax\Exceptions\TaxErrorException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class TaxableTest extends TestCase
