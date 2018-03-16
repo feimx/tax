@@ -18,7 +18,8 @@ class Tax extends Model
 
     public function info(): TaxContract
     {
-        $className = '\\FeiMx\\Tax\\Taxes\\'. strtoupper($this->name);
+        $className = '\\FeiMx\\Tax\\Taxes\\'.strtoupper($this->name);
+
         return new $className($this->retention);
     }
 

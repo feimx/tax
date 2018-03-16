@@ -10,10 +10,22 @@ use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 class TestCase extends OrchestraTestCase
 {
+    protected $taxGroup;
+
+    protected $tax;
+
+    protected $product;
+
+    protected $service;
+
     public function setup()
     {
         parent::setUp();
         $this->setUpDatabase($this->app);
+        $this->product = Product::first();
+        $this->service = Service::first();
+        $this->tax = Tax::first();
+        $this->taxGroup = TaxGroup::first();
     }
 
     protected function getPackageProviders($app)
@@ -76,16 +88,16 @@ class TestCase extends OrchestraTestCase
 
     public function createProducts()
     {
+        Product::create(['price' => 2300.90]);
         Product::create(['price' => 100]);
         Product::create(['price' => 500]);
-        Product::create(['price' => 2500.00]);
         Product::create(['price' => 5000]);
     }
 
     public function createServices()
     {
+        Service::create(['amount' => 2300.90]);
         Service::create(['amount' => 100]);
-        Service::create(['amount' => 500]);
         Service::create(['amount' => 2500.00]);
         Service::create(['amount' => 5000]);
     }
