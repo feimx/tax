@@ -67,6 +67,10 @@ class Tax
             return $this->getTaxName();
         }
 
+        if (property_exists($this, $property)) {
+            return $this->{$property};
+        }
+
         throw new \Exception('Property not exists');
     }
 
