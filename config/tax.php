@@ -2,7 +2,7 @@
 
 return [
     /*
-     * Used The fallback type determines the type to use when the current one
+     * The fallback type determines the type to use when the current one
      * is not available. You may change the value to correspond to any of
      * provided types
      */
