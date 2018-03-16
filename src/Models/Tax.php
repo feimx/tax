@@ -2,6 +2,7 @@
 
 namespace FeiMx\Tax\Models;
 
+use FeiMx\Tax\Contracts\TaxContract;
 use Illuminate\Database\Eloquent\Model;
 
 class Tax extends Model
@@ -9,4 +10,30 @@ class Tax extends Model
     protected $fillable = [
         'name', 'type', 'retention',
     ];
+
+    public function taxGroup()
+    {
+        return $this->belongsTo(TaxGroup::class);
+    }
+
+    public function info(): TaxContract
+    {
+        $className = '\\FeiMx\\Tax\\Taxes\\'. strtoupper($this->name);
+        return new $className($this->retention);
+    }
+
+    public function getInfoAttribute(): TaxContract
+    {
+        return $this->info();
+    }
+
+    public function scopeRetention($query)
+    {
+        return $query->whereRetention(true)->orWhere('name', 'isr');
+    }
+
+    public function scopeTraslate($query)
+    {
+        return $query->whereRetention(false)->where('name', '<>', 'isr');
+    }
 }

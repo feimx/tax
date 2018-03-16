@@ -26,7 +26,7 @@ class CreateTaxesTables extends Migration
             $table->increments('id');
             $table->string('name')->default('iva');
             $table->string('type')->default('default');
-            $table->unsignedBigInteger("tax_group_id");
+            $table->unsignedBigInteger("tax_group_id")->nullable();
             $table->boolean('retention')->default(false);
             $table->timestamps();
         });
