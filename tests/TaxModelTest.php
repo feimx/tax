@@ -2,12 +2,12 @@
 
 namespace FeiMx\Tax\Tests;
 
-use FeiMx\Tax\Contracts\TaxContract;
-use FeiMx\Tax\Models\Tax;
-use FeiMx\Tax\Models\TaxGroup;
-use FeiMx\Tax\Taxes\IEPS;
 use FeiMx\Tax\Taxes\ISR;
 use FeiMx\Tax\Taxes\IVA;
+use FeiMx\Tax\Models\Tax;
+use FeiMx\Tax\Taxes\IEPS;
+use FeiMx\Tax\Models\TaxGroup;
+use FeiMx\Tax\Contracts\TaxContract;
 
 class TaxModelTest extends TestCase
 {
