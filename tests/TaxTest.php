@@ -68,4 +68,16 @@ class TaxTest extends TestCase
         $ieps = new IEPS($retention);
         $this->assertEquals(-0.08, $ieps->percentage());
     }
+
+    public function testCanGetFiscalCode()
+    {
+        $iva = new IVA();
+        $this->assertEquals('002', $iva->code);
+
+        $isr = new ISR();
+        $this->assertEquals('001', $isr->code);
+
+        $ieps = new IEPS();
+        $this->assertEquals('003', $ieps->code);
+    }
 }
