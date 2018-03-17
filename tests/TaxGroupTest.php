@@ -3,8 +3,8 @@
 namespace FeiMx\Tax\Tests;
 
 use FeiMx\Tax\Models\Tax;
-use FeiMx\Tax\Models\TaxGroup;
 use FeiMx\Tax\TaxManager;
+use FeiMx\Tax\Models\TaxGroup;
 
 class TaxGroupTest extends TestCase
 {
