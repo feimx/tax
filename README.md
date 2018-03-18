@@ -23,8 +23,6 @@ You can install the package via composer:
 composer require feimx/tax
 ```
 
-Next, you must install the service provider:
-
 ```php
 // config/app.php
 'providers' => [
@@ -32,7 +30,9 @@ Next, you must install the service provider:
 ];
 ```
 
-_Note:_ If your laravel versions is `>=5.5` you don't need register providers.
+_Note:_ If your Laravel versions is `>=5.5` you don't need register providers.
+
+_Note:_ This is not necesary if you are not using Laravel
 
 You can optionally publish the config file with:
 
@@ -71,6 +71,14 @@ return [
     ],
 ];
 ```
+_Note:_ This is not necesary if you are not using Laravel
+
+You can optionally publish the migrations file with:
+
+```bash
+php artisan vendor:publish --provider="FeiMx\Tax\TaxServiceProvider" --tag="migrations"
+```
+_Note:_ This is not necesary if you are not using Laravel
 
 ## Usage
 
@@ -132,6 +140,92 @@ This is the contents of get method:
         ],
     ],
 ];
+```
+
+## Models
+
+You can assign Taxable trait to your models.
+
+``` php
+use FeiMx\Tax\Traits\Taxable;
+
+class Product extends Model
+{
+    use Taxable;
+
+    protected $fillable = ['price'];
+}
+```
+
+You can assign tax groups to your model:
+
+``` php
+$product = Product::first();
+$taxGroup = \FeiMx\Tax\Models\TaxGroup::first();
+
+$product->assignTaxGroup($taxGroup);
+```
+
+You can pass a name and multiples tax groups:
+
+``` php
+$product->assignTaxGroup('iva');
+$product->assignTaxGroup('iva', 'isr');
+$product->assignTaxGroup(['iva', 'isr']);
+$product->assignTaxGroup(collect(['iva', $taxGroup]));
+```
+
+You can sync too:
+
+``` php
+$product->syncTaxGroups('iva');
+$product->syncTaxGroups('iva', 'isr');
+$product->syncTaxGroups(['iva', 'isr']);
+```
+
+And you can remove:
+
+``` php
+$product->removeTaxGroup('iva');
+$product->removeTaxGroup($taxGroup);
+```
+
+You can verify if a model has a TaxGroup:
+
+``` php
+$product->hasTaxGroup('iva');
+$product->hasTaxGroup($taxGroup);
+$product->hasTaxGroup([$taxGroup, 'iva']);
+```
+
+For get the total amount after taxes, must need to know what column use, for defaul we use `price` column,
+but you can use another one:
+
+``` php
+class Product extends Model
+{
+    use Taxable;
+
+    protected $fillable = ['price'];
+
+    public static function priceColumn()
+    {
+        return 'price';
+    }
+}
+```
+
+
+Now you can get the total of a given TaxGroup:
+
+``` php
+$product->total($taxGroup);
+```
+
+And you can obtain the content of the get method of the TaxManager:
+
+``` php
+$product->getAmounts($taxGroup);
 ```
 
 ### Testing
