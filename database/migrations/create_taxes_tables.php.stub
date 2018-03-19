@@ -18,8 +18,6 @@ class CreateTaxesTables extends Migration
             $table->string('name');
             $table->boolean('active')->default(true);
             $table->timestamps();
-
-            $table->index(["model_type", "model_id"]);
         });
 
         Schema::create('taxes', function (Blueprint $table) {
