@@ -243,4 +243,13 @@ class TaxManagerTest extends TestCase
         $taxManager->addTax('ieps', $retention);
         $this->assertEquals(86.6666, $taxManager->total());
     }
+
+    public function testCanGetFreeTaxes()
+    {
+        $retention = true;
+
+        $taxManager = new TaxManager(100);
+        $taxManager->addTax('iva', 'free');
+        $this->assertEquals(100.0000, $taxManager->total());
+    }
 }

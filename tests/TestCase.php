@@ -75,6 +75,7 @@ class TestCase extends OrchestraTestCase
         TaxGroup::create(['name' => 'iva and ieps']);
         TaxGroup::create(['name' => 'ieps', 'active' => false]);
         TaxGroup::create(['name' => 'iva ret and isr']);
+        TaxGroup::create(['name' => 'free iva']);
     }
 
     public function createTaxes()
@@ -84,6 +85,7 @@ class TestCase extends OrchestraTestCase
         Tax::create(['name' => 'isr']);
         Tax::create(['name' => 'ieps']);
         Tax::create(['name' => 'ieps', 'retention' => true]);
+        Tax::create(['name' => 'iva', 'type' => 'free']);
     }
 
     public function createProducts()

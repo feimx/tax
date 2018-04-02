@@ -47,10 +47,10 @@ class TaxTest extends TestCase
     {
         $retention = true;
 
-        $iva = new IVA();
-        $this->assertEquals(0.16, $iva->percentage());
-        $this->assertEquals(-0.106667, $iva->percentage('retention'));
-        $this->assertEquals(0.16, $iva->percentage('unexist'));
+        $this->assertEquals(0.16, (new IVA())->percentage());
+        $this->assertEquals(-0.106667, (new IVA('retention'))->percentage());
+        $this->assertEquals(0.16, (new IVA('unexist'))->percentage());
+        $this->assertEquals(0, (new IVA('free'))->percentage());
 
         $iva = new IVA($retention);
         $this->assertEquals(-0.106667, $iva->percentage());
@@ -58,12 +58,12 @@ class TaxTest extends TestCase
         $isr = new ISR();
         $this->assertEquals(-0.106667, $isr->percentage());
 
-        $ieps = new IEPS();
-        $this->assertEquals(0.08, $ieps->percentage());
-        $this->assertEquals(0.08, $ieps->percentage('unexist'));
-        $this->assertEquals(-0.08, $ieps->percentage('retention'));
-        $this->assertEquals(0.11, $ieps->percentage('primary'));
-        $this->assertEquals(0.13, $ieps->percentage('secondary'));
+        $this->assertEquals(0.08, (new IEPS())->percentage());
+        $this->assertEquals(0.08, (new IEPS('unexist'))->percentage());
+        $this->assertEquals(-0.08, (new IEPS('retention'))->percentage());
+        $this->assertEquals(0.11, (new IEPS('primary'))->percentage());
+        $this->assertEquals(0.13, (new IEPS('secondary'))->percentage());
+        $this->assertEquals(0, (new IEPS('free'))->percentage());
 
         $ieps = new IEPS($retention);
         $this->assertEquals(-0.08, $ieps->percentage());

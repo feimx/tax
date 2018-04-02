@@ -2,6 +2,7 @@
 
 namespace FeiMx\Tax\Tests;
 
+use FeiMx\Tax\Models\Tax;
 use FeiMx\Tax\Models\TaxGroup;
 use FeiMx\Tax\Exceptions\TaxErrorException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -144,5 +145,24 @@ class TaxableTest extends TestCase
         ];
 
         $this->assertSame($data, $this->product->getAmounts($this->taxGroup));
+    }
+
+    public function testCanGetAListOfCalculatedAmountsOfFreeTaxes()
+    {
+        $taxGroup = TaxGroup::find(5);
+        $taxGroup->addTax(Tax::find(6));
+        $this->product->assignTaxGroup($taxGroup);
+        $data = [
+            'amount' => '2300.9',
+            'total' => '2300.900000',
+            'taxes' => [
+                [
+                    'tax' => 'iva',
+                    'amount' => '0.000000',
+                ],
+            ],
+        ];
+
+        $this->assertSame($data, $this->product->getAmounts($taxGroup));
     }
 }
