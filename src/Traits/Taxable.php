@@ -2,8 +2,8 @@
 
 namespace FeiMx\Tax\Traits;
 
-use FeiMx\Tax\Models\TaxGroup;
 use FeiMx\Tax\Exceptions\TaxErrorException;
+use FeiMx\Tax\Models\TaxGroup;
 use Illuminate\Database\Eloquent\Relations\MorphToMany;
 
 trait Taxable

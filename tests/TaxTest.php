@@ -2,9 +2,9 @@
 
 namespace FeiMx\Tax\Tests;
 
+use FeiMx\Tax\Taxes\IEPS;
 use FeiMx\Tax\Taxes\ISR;
 use FeiMx\Tax\Taxes\IVA;
-use FeiMx\Tax\Taxes\IEPS;
 
 class TaxTest extends TestCase
 {
