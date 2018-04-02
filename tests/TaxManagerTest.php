@@ -2,10 +2,10 @@
 
 namespace FeiMx\Tax\Tests;
 
-use FeiMx\Tax\Taxes\IVA;
-use FeiMx\Tax\TaxManager;
 use FeiMx\Tax\Contracts\TaxContract;
 use FeiMx\Tax\Exceptions\TaxErrorException;
+use FeiMx\Tax\Taxes\IVA;
+use FeiMx\Tax\TaxManager;
 
 class TaxManagerTest extends TestCase
 {

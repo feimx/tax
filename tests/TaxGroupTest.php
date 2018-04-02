@@ -3,8 +3,8 @@
 namespace FeiMx\Tax\Tests;
 
 use FeiMx\Tax\Models\Tax;
-use FeiMx\Tax\TaxManager;
 use FeiMx\Tax\Models\TaxGroup;
+use FeiMx\Tax\TaxManager;
 
 class TaxGroupTest extends TestCase
 {
@@ -29,7 +29,7 @@ class TaxGroupTest extends TestCase
     public function testFilterByActive()
     {
         $taxGroups = TaxGroup::active()->get();
-        $this->assertCount(3, $taxGroups);
+        $this->assertCount(4, $taxGroups);
 
         $taxGroups = TaxGroup::active(false)->get();
         $this->assertCount(1, $taxGroups);
