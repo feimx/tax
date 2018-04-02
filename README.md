@@ -100,6 +100,12 @@ $ieps = new \FeiMx\Tax\Taxes\IEPS($retention = false);
 $taxManager->addTax($tax = 'iva', $retention = false);
 $taxManager->addTax($iva);
 ```
+_Note:_ You can pass a string for a tax type of given config file instead the retention boolean param.
+
+``` php
+$iva = new \FeiMx\Tax\Taxes\IVA('free');
+$taxManager->addTax($tax = 'iva', 'free');
+```
 
 You can add multiple taxes at once:
 

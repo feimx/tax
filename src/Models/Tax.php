@@ -20,7 +20,7 @@ class Tax extends Model
     {
         $className = '\\FeiMx\\Tax\\Taxes\\'.strtoupper($this->name);
 
-        return new $className($this->retention);
+        return new $className($this->retention ? $this->retention : $this->type);
     }
 
     public function getInfoAttribute(): TaxContract

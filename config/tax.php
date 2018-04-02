@@ -15,6 +15,7 @@ return [
         'iva' => [
             'default' => 0.16,
             'retention' => -0.106667,
+            'free' => 0,
         ],
         'isr' => [
             'default' => -0.106667,
@@ -24,6 +25,7 @@ return [
             'retention' => -0.08,
             'primary' => 0.11,
             'secondary' => 0.13,
+            'free' => 0,
         ],
     ],
 ];

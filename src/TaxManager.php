@@ -29,7 +29,7 @@ class TaxManager
 
     /**
      * @param string|FeiMx\Tax\Contracts\TaxContract $tax
-     * @param bool                                   $retention
+     * @param bool|string                            $retention
      *
      * @return mixed
      */

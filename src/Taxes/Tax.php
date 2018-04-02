@@ -9,9 +9,9 @@ class Tax
     /**
      * Create new instance of taxes.
      *
-     * @param bool $retention
+     * @param bool|string $retention
      */
-    public function __construct(bool $retention = false)
+    public function __construct($retention = false)
     {
         $this->retention = $retention;
     }
@@ -23,11 +23,11 @@ class Tax
      *
      * @return int $percentage Amount of the tax
      */
-    public function percentage($type = 'default'): float
+    public function percentage(): float
     {
         $taxName = $this->getTaxName();
 
-        $type = $this->parseTypePercentage($type);
+        $type = $this->parseTypePercentage();
 
         return $percentage = config(
             "tax.taxes.{$taxName}.{$type}",
@@ -56,9 +56,9 @@ class Tax
      *
      * @return string Type of the tax amount
      */
-    protected function parseTypePercentage($type = 'default')
+    protected function parseTypePercentage()
     {
-        return $this->retention ? 'retention' : $type;
+        return is_bool($this->retention) && $this->retention ? 'retention' : $this->retention;
     }
 
     public function __get($property)
