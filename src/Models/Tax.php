@@ -11,6 +11,10 @@ class Tax extends Model
         'name', 'type', 'retention',
     ];
 
+    protected $casts = [
+        'retention' => 'boolean',
+    ];
+
     public function taxGroup()
     {
         return $this->belongsTo(TaxGroup::class);
@@ -30,11 +34,11 @@ class Tax extends Model
 
     public function scopeRetention($query)
     {
-        return $query->whereRetention(true)->orWhere('name', 'isr');
+        return $query->whereRetention(true);
     }
 
     public function scopeTraslate($query)
     {
-        return $query->whereRetention(false)->where('name', '<>', 'isr');
+        return $query->whereRetention(false);
     }
 }
