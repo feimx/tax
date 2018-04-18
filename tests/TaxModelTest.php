@@ -41,12 +41,12 @@ class TaxModelTest extends TestCase
     public function testCanFilterByRetention()
     {
         $taxes = Tax::retention()->get();
-        $this->assertCount(3, $taxes);
+        $this->assertCount(2, $taxes);
     }
 
     public function testCanFilterByTralated()
     {
         $taxes = Tax::traslate()->get();
-        $this->assertCount(3, $taxes);
+        $this->assertCount(4, $taxes);
     }
 }
